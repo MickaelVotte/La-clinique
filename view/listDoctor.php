@@ -24,6 +24,7 @@ include('../view/templates/header.php')
                     <th scope="col">Prénon</th>
                     <th scope="col">Spécialité</th>
                     <th scope="col">Information</th>
+                    <th scope="col">Modifier</th>
 
                  
                 </tr>
@@ -31,9 +32,10 @@ include('../view/templates/header.php')
             <tbody class="text-center">
                 
                 <?php 
-                
+
                 foreach ($doctorArray as $doctor) { ?>
                     <tr>
+
                         <td><?= $doctor['doctors_id'] ?></td>
                         <td class="text-uppercase"><?= $doctor['doctors_name'] ?></td>
                         <td><?= $doctor['doctors_lastname'] ?></td>
@@ -64,6 +66,7 @@ include('../view/templates/header.php')
                                                         <th scope="col">N° de Télèphone</th>
                                                         <th scope="col">mail</th>
                                                         <th scope="col">Spécialité</th>
+                                                       
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,7 +89,12 @@ include('../view/templates/header.php')
                                 </div>
                             </div>
                         </td>
+                        <td>
+                           <!-- Button trigger modal -->
+                           <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                 <a href="./modifyDoctor.php?id=<?=$doctor['doctors_id']?> ">Modifier</a> 
                         </td>
+                        
                     </tr>
                 <?php } ?>
 
