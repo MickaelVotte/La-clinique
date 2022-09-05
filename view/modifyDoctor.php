@@ -41,8 +41,8 @@ include('../view/templates/header.php')
                 <br>
                 <select name="medicalspecialities" id="medicalspecialities">
                     <option value="" disabled selected>choix de la spécialité</option>
-                    <?php foreach ($arrayMedicalSpecialities as $value) { ?>
-                        <option value="<?= $infoDoctor['medicalspecialities_id_medicalspecialities'] ?>"><?= $value['medicalspecialities_name'] ?></option>
+                    <?php foreach ($arrayMedicalSpecialities as $key => $value ) { ?>
+                        <option value="<?= $value['medicalspecialities_id'] ?>" <?= $value['medicalspecialities_id'] == $infoDoctor['medicalspecialities_id_medicalspecialities'] ? 'selected': ''?>><?= $value['medicalspecialities_name'] ?></option>
                     <?php  } ?>
                 </select>
             </div>

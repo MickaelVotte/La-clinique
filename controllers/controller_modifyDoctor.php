@@ -19,12 +19,9 @@ $medicalspecialitiesObj = new Medicalspecialities();
 $arrayMedicalSpecialities = $medicalspecialitiesObj->getMedicalspecialities();
 
 
-
 $doctor = new Doctors();
 
 $infoDoctor = $doctor->getOneDoctor($_GET['id']);
-
-var_dump($infoDoctor);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -115,5 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     
     }
+
+
+
 
 }

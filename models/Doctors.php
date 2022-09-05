@@ -188,7 +188,7 @@ class Doctors extends DataBase
 
             
         $query->bindValue(':name', $name, PDO::PARAM_STR);
-        $query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
+        $query->bindValue(':lastname', $firstname, PDO::PARAM_STR);
         $query->bindValue(':phonenumber', $phonenumber, PDO::PARAM_STR);
         $query->bindValue(':mail', $mail, PDO::PARAM_STR);
         $query->bindValue('medicalspecialities', $medicalspecialities, PDO::PARAM_STR);
