@@ -157,14 +157,14 @@ class Rdv extends DataBase
 
 
     
-    public function updateRdv($date, $hour, $description, $idPatient, $idDoctor)
+    public function updateRdv($date, $hour, $description, $idPatient, $idDoctor, $idRdv)
     {
         //création d'une instance pdo via la function du parent
         $pdo = parent::connectDb();
 
         //j'écris la requete qui va me permettre de modifier toutes les infos du rdv
-        $sql ="UPDATE rendezvous SET rendezvous_date = :date, rendezvous_hour = :hour, rendezvous_description = :description, patients_id_patients = idPatients, doctors_id_doctors = :idDoctors 
-        WHERE rendezvous_id =:id";
+        $sql ="UPDATE rendezvous SET rendezvous_date = :date, rendezvous_hour = :hour, rendezvous_description = :description, patients_id_patients = :idPatients, doctors_id_doctors = :idDoctors 
+        WHERE rendezvous_id =:idRdv";
 
 
         //je préapre la requete que je stock dans query à l'aide e la methode->prepare()
@@ -173,11 +173,13 @@ class Rdv extends DataBase
 
         //je lis la valerur du parametre grace à un marqueur nomitatif :date, :hour etc à l'aide de la methode->bindValue()
 
-        $query->bindValue(':date', $date, PDO::PARAM_INT);
+        $query->bindValue(':date', $date, PDO::PARAM_STR);
         $query->bindValue(':hour', $hour, PDO::PARAM_STR);
         $query->bindValue(':description', $description, PDO::PARAM_STR);
-        $query->bindValue(':idPatient', $idPatient, PDO::PARAM_INT);
-        $query->bindValue('idDoctors', $idDoctor, PDO::PARAM_INT);
+        $query->bindValue(':idPatients', $idPatient, PDO::PARAM_INT);
+        $query->bindValue(':idDoctors', $idDoctor, PDO::PARAM_INT);
+        $query->bindValue(':idRdv', $idRdv, PDO::PARAM_INT);
+       
 
 
         //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute

@@ -2,6 +2,7 @@
 session_start();
 
 require_once '../controllers/controller_modifyRdv.php';
+require_once '../models/Rdv.php';
 
 
 include('../view/templates/header.php')
@@ -19,19 +20,19 @@ include('../view/templates/header.php')
         <div>
             <label for="date">Date:<span class="text-danger"><?= isset($errors['date']) ? $errors['date'] : '' ?></span></label>
             <br>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" id="date" requierd value="<?= $_POST['date'] ?? $infoRdv['rendezvous_date'] ?>">
         </div>
         <div>
             <label for="start">début du rendez-vous:<span class="text-danger"><?= isset($errors['start']) ? $errors['start'] : '' ?></span></label>
             <br>
-            <input type="time" name="start" id="start">
+            <input type="time" name="start" id="start" required value="<?=$_POST['start'] ?? $infoRdv['rendezvous_hour']?>">
         </div>
         
     
         <div>
             <label for="description">description<span class="text-danger"><?= isset($errors['description']) ? $errors['description'] : '' ?></span></label>
             <br>
-            <textarea name="description" type="description" id="description" value="" row="30" cols="60"></textarea>
+            <textarea name="description" type="description" id="description" required  row="30" cols="60"><?= $_POST['description'] ?? $infoRdv['rendezvous_description'] ?></textarea>
         </div>
         
         <div>
@@ -40,7 +41,7 @@ include('../view/templates/header.php')
             <select name="patients" id="patients">
                 <option value="" disabled selected>Veuillez selectionner un client</option>
             <?php foreach($patientsArray as $value) { ?>
-            <option value="<?= $value['patients_id'] ?>"><?=$value['patients_lastname']?></option>
+            <option value="<?= $value['patients_id'] ?>"<?=$value['patients_id'] == $infoRdv['patients_id_patients'] ? 'selected' : ''?>><?=$value['patients_lastname']?></option>
             <?php } ?>
             </select>
         </div>
@@ -51,7 +52,7 @@ include('../view/templates/header.php')
             <select name="doctors" id="doctors">
             <option value="" disabled selected>Veuillez selectionner un docteur</option>
                 <?php foreach($doctorsArray as $value) { ?>
-            <option value="<?= $value['doctors_id'] ?>"><?=$value['doctors_name']?></option>
+            <option value="<?= $value['doctors_id'] ?>" <?= $value['doctors_id'] == $infoRdv['doctors_id_doctors'] ? 'selected' : ''?>><?=$value['doctors_name']?></option>
             <?php } ?>
             
             </select>
@@ -61,6 +62,7 @@ include('../view/templates/header.php')
 
         <div class="m-5">
                 <div>
+                    <input type="hidden" name="idRdv" value="<?=$infoRdv['rendezvous_id']?>">
                     <button class="btn btn-success">Modifier</button>
                 </div>
             </div>

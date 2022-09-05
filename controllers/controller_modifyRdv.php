@@ -9,13 +9,22 @@ if(!isset($_SESSION['user'])){
 require_once '../config.php';
 require_once '../models/Database.php';
 require_once '../models/Rdv.php';
+require_once '../models/Doctors.php';
+require_once '../models/Patients.php';
 
 $rdv = new Rdv();
 
 $infoRdv = $rdv->getOneRdv($_GET['id']);
 
+$patient = new Patients();
+$patientsArray = $patient->getAllPatients();
+
+$doctor = new Doctors();
+$doctorsArray = $doctor->getAllDoctors();
+
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
+    var_dump($_POST);
 
 
     $errors = [];
@@ -54,19 +63,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $description = htmlspecialchars(($_POST['description']));
             $patient = intval($_POST['patients']);
             $doctor = intval($_POST['doctors']);
+            $idRdv =htmlspecialchars(($_POST['idRdv']));
 
             //J'instancie un objet $modifyRdvObj avec la class Rdv
             $modifyRdvObj = new Rdv();
 
             //je fais appelle à la méthode updatePatient pour modifier mon patient : Attention bien respecter l'ordre des parametres
-            $modifyRdvObj->updateRdv($date, $hour, $description, $idPatient, $idDoctor);
+            $modifyRdvObj->updateRdv($date, $start, $description, $patient, $doctor, $idRdv);
 
 
             header('Location: dashboard.php');
         }
 
 }
-var_dump($errors);
+
 }
 
 
