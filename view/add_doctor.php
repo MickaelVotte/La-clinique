@@ -68,9 +68,6 @@ include('../view/templates/header.php')
             </div>
         </div>
 
-
-        <?php var_dump($_POST); ?>
-
     </form>
 
 </div>

@@ -9,13 +9,13 @@ include('../view/templates/header.php');
 
 
 <div class="row text-center d-flex-justify-content-center fs-3 mt-3 mb-3 m-0 p-0">
-    <p>Liste des Rendez Vous</p> 
+    <p>Liste des Rendez Vous</p>
 </div>
 
 <div class="row d-flex-justify-content-center m-0 p-0">
     <div class="ps-5 pe-5">
         <table class="table table-striped">
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">date</th>
@@ -23,19 +23,28 @@ include('../view/templates/header.php');
                     <th scope="col">description</th>
                     <th scope="col">patient</th>
                     <th scope="col">docteur</th>
+                    <th scope="col">modifier</th>
                 </tr>
             </thead>
-            <tbody class="">
+            <tbody class="text-center">
                 <?php
-                
+
                 foreach ($rendezvousArray as $rdv) { ?>
                     <tr>
                         <td><?= $rdv['rendezvous_id'] ?></td>
-                        <td><?=$rdv['rendezvous_date']?></td>
-                        <td><?=$rdv['rendezvous_hour']?></td>
-                        <td><?=$rdv['rendezvous_description']?></td>
-                        <td><?=$rdv['doctors_name']?></td>
-                        <td><?=$rdv['medicalspecialities_name']?></td>
+                        <td><?= $rdv['rendezvous_date'] ?></td>
+                        <td><?= $rdv['rendezvous_hour'] ?></td>
+                        <td><?= $rdv['rendezvous_description'] ?></td>
+                        <td><?= $rdv['doctors_name'] ?></td>
+                        <td><?= $rdv['medicalspecialities_name'] ?></td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal"><a href="./modifyRdv.php?id=<?=$rdv['rendezvous_id']?>">Modifier</a>
+                                
+                            </button>
+
+                          
+                        </td>
                     </tr>
                 <?php } ?>
 

@@ -125,6 +125,69 @@ class Rdv extends DataBase
     }
 
 
+
+
+
+    /**
+     * permet de recuperer tout les information d'un rdv
+     * @return array tableau associatif
+     */
+
+
+     public function getOneRdv($id): array
+    {
+        //création d'une instance pdo via la function du parent
+        $pdo = parent::connectDb();
+
+        //j'écris la requete qui va me permettre de recuperer les informations d'un rdv
+        $sql = "SELECT * FROM rendezvous WHERE `rendezvous_id` = :id";
+
+        //je prepare la requete a l'aide de la methode prepare() pque je stock dans une variable
+        $query = $pdo->prepare($sql);
+
+        //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+         //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
+        $query->execute();
+        $result = $query->fetch();
+        return $result;
+        
+    }
+
+
+    
+    public function updateRdv($date, $hour, $description, $idPatient, $idDoctor)
+    {
+        //création d'une instance pdo via la function du parent
+        $pdo = parent::connectDb();
+
+        //j'écris la requete qui va me permettre de modifier toutes les infos du rdv
+        $sql ="UPDATE rendezvous SET rendezvous_date = :date, rendezvous_hour = :hour, rendezvous_description = :description, patients_id_patients = idPatients, doctors_id_doctors = :idDoctors 
+        WHERE rendezvous_id =:id";
+
+
+        //je préapre la requete que je stock dans query à l'aide e la methode->prepare()
+        //une requete préparée est à priviligier lorsque nous récupérons des données rentrées par l'utilisateur
+        $query = $pdo->prepare($sql);
+
+        //je lis la valerur du parametre grace à un marqueur nomitatif :date, :hour etc à l'aide de la methode->bindValue()
+
+        $query->bindValue(':date', $date, PDO::PARAM_INT);
+        $query->bindValue(':hour', $hour, PDO::PARAM_STR);
+        $query->bindValue(':description', $description, PDO::PARAM_STR);
+        $query->bindValue(':idPatient', $idPatient, PDO::PARAM_INT);
+        $query->bindValue('idDoctors', $idDoctor, PDO::PARAM_INT);
+
+
+        //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
+        $query->execute();
+
+    }
+
+
+
+
 }
 
 

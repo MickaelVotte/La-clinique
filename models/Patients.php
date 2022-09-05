@@ -137,6 +137,7 @@ class Patients extends DataBase
      */
     public function getOnePatient($id): array
     {
+        //création d'une instance pdo via la function du parent
         $pdo = parent::connectDb();
 
         $sql = "SELECT * FROM patients WHERE `patients_id` = :id";

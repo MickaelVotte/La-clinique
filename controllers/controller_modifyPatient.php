@@ -11,7 +11,6 @@ $patient = new Patients();
 
 $infoPatient = $patient->getOnePatient($_GET['id']);
 
-var_dump($infoPatient);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -79,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $mail = htmlspecialchars($_POST['mail']);
         $idPatient = htmlspecialchars($_POST['idPatient']);
 
-        //j'instancie un objet $patientObj avec la class Patients
+        //j'instancie un objet $modifyPatientObj avec la class Patients
         $modifyPatientObj = new Patients();
 
         //je fais appelle à la méthode updatePatient pour modifier mon patient : Attention bien respecter l'ordre des parametres
