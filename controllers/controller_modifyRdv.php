@@ -38,11 +38,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $errors['description'] = 'Format invalide';
         }
     
-        if (empty($_POST['patients'])) { {
+        if (!isset($_POST['patients'])) { {
                 $errors['patients'] = "Veuillez sélectionner un patient";
             }
         }
-        if (empty($_POST['doctors'])) {
+        if (!isset($_POST['doctors'])) {
             $errors['doctors'] = "Veuillez sélectionner un docteur";
         }
     
@@ -66,7 +66,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         }
 
 }
-
+var_dump($errors);
 }
 
 

@@ -29,13 +29,13 @@ include('../view/templates/header.php')
         
     
         <div>
-            <label for="description">description<span class="text-danger"><?= isset($errors['description']) ? $errors['description'] : '' ?></span></span></label>
+            <label for="description">description<span class="text-danger"><?= isset($errors['description']) ? $errors['description'] : '' ?></span></label>
             <br>
             <textarea name="description" type="description" id="description" value="" row="30" cols="60"></textarea>
         </div>
         
         <div>
-            <label for="patients">patient:<span class="text-danger" <?= isset($errors['patients']) ? $errors['patients'] :''?>></span></label>
+            <label for="patients">patient:<span class="text-danger"><?= isset($errors['patients']) ? $errors['patients'] :''?></span></label>
             <br>
             <select name="patients" id="patients">
                 <option value="" disabled selected>Veuillez selectionner un client</option>
@@ -46,7 +46,7 @@ include('../view/templates/header.php')
         </div>
 
         <div>
-            <label for="doctors">docteur:<span <?= isset($errors['doctors']) ? $errors['doctors'] :''?>></span></label>
+            <label for="doctors">docteur:<span class="text-danger"><?= isset($errors['doctors']) ? $errors['doctors'] :''?></span></label>
             <br>
             <select name="doctors" id="doctors">
             <option value="" disabled selected>Veuillez selectionner un docteur</option>
@@ -61,7 +61,7 @@ include('../view/templates/header.php')
 
         <div class="m-5">
                 <div>
-                    <button class="btn btn-success">Ajouter</button>
+                    <button class="btn btn-success">Modifier</button>
                 </div>
             </div>
             <div class="row justify-content-center m-2">
