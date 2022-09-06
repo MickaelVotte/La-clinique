@@ -198,8 +198,30 @@ class Doctors extends DataBase
   //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
   $query->execute();
 
-
+    }
         
 
-    }
+
+  public function deleteDoctor($id)
+  {
+      // //création d'une instance pdo via la function du parent
+      $pdo = parent::connectDb();
+
+      //j'écris une requete pour supprimer un client.
+      $sql = "DELETE FROM doctors WHERE doctors_id = :id";
+
+      $query = $pdo->prepare($sql);
+
+      //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
+      $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+      $query->execute();
+      
+      
+  }
+
+
+
+
+    
 }

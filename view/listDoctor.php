@@ -25,6 +25,7 @@ include('../view/templates/header.php')
                     <th scope="col">Spécialité</th>
                     <th scope="col">Information</th>
                     <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
 
                  
                 </tr>
@@ -33,23 +34,23 @@ include('../view/templates/header.php')
                 
                 <?php 
 
-                foreach ($doctorArray as $doctor) { ?>
+                foreach ($doctorArray as $doctors) { ?>
                     <tr>
 
-                        <td><?= $doctor['doctors_id'] ?></td>
-                        <td class="text-uppercase"><?= $doctor['doctors_name'] ?></td>
-                        <td><?= $doctor['doctors_lastname'] ?></td>
-                        <td><?= $doctor['medicalspecialities_name'] ?></td>
+                        <td><?= $doctors['doctors_id'] ?></td>
+                        <td class="text-uppercase"><?= $doctors['doctors_name'] ?></td>
+                        <td><?= $doctors['doctors_lastname'] ?></td>
+                        <td><?= $doctors['medicalspecialities_name'] ?></td>
                         
 
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctor-<?=$doctor['doctors_id']?>">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorInfo-<?=$doctors['doctors_id']?>">
                                 Plus d'infos
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="doctor-<?=$doctor['doctors_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="doctorInfo-<?=$doctors['doctors_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -71,12 +72,12 @@ include('../view/templates/header.php')
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><?= $doctor['doctors_id'] ?></td>
-                                                        <td class="text-uppercase"><?= $doctor['doctors_name'] ?></td>
-                                                        <td><?= $doctor['doctors_lastname'] ?></td>
-                                                        <td><?= $doctor['doctors_phonenumber'] ?></td>
-                                                        <td><?= $doctor['doctors_mail'] ?></td>
-                                                        <td><?= $doctor['medicalspecialities_name'] ?></td>
+                                                        <td><?= $doctors['doctors_id'] ?></td>
+                                                        <td class="text-uppercase"><?= $doctors['doctors_name'] ?></td>
+                                                        <td><?= $doctors['doctors_lastname'] ?></td>
+                                                        <td><?= $doctors['doctors_phonenumber'] ?></td>
+                                                        <td><?= $doctors['doctors_mail'] ?></td>
+                                                        <td><?= $doctors['medicalspecialities_name'] ?></td>
                                                     </tr>
 
                                                 </tbody>
@@ -89,11 +90,38 @@ include('../view/templates/header.php')
                                 </div>
                             </div>
                         </td>
-                        <td>
-                           <!-- Button trigger modal -->
-                           <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                 <a href="./modifyDoctor.php?id=<?=$doctor['doctors_id']?> ">Modifier</a> 
-                        </td>
+
+
+
+
+
+
+                        <td> <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#doctors-<?= $doctors['doctors_id'] ?>">
+                                Supprimer
+                            </button>
+
+                            <!-- Modal -->
+                            <?php foreach ($doctorArray as $doctors) { ?>
+                                <div class="modal fade" id="doctors-<?= $doctors['doctors_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Supprimer le docteur</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez vous supprimer le docteur <?= $doctors['doctors_lastname'] ?> ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                                                <a href="listDoctor.php?action=delete&idDoctor=<?=$doctors['doctors_id'] ?>" class="btn btn-success" value="">Oui</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </td></td>
                         
                     </tr>
                 <?php } ?>

@@ -160,7 +160,7 @@ class Patients extends DataBase
      * @param string $phonenumber numéro du patient
      * @param string $address adresse postale du patient
      */
-    public function updatePatient( $lastname, $firstname, $phonenumber, $address, $mail ,$idPatient)
+    public function updatePatient($lastname, $firstname, $phonenumber, $address, $mail, $idPatient)
     {
         $pdo = parent::connectDb();
 
@@ -175,8 +175,8 @@ class Patients extends DataBase
 
 
         //je lis la valeur du paramètre (ex: $mail, lastname etc) u marqueur nominatif :mail à l'aide de la méthode-> bindValue()
-    
-        
+
+
         $query->bindValue(':lastname', $lastname, PDO::PARAM_STR);
         $query->bindValue(':firstname', $firstname, PDO::PARAM_STR);
         $query->bindValue(':phonenumber', $phonenumber, PDO::PARAM_STR);
@@ -187,5 +187,24 @@ class Patients extends DataBase
 
         //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
         $query->execute();
+    }
+
+
+    public function deletePatient($id)
+    {
+        // //création d'une instance pdo via la function du parent
+        $pdo = parent::connectDb();
+
+        //j'écris une requete pour supprimer un client.
+        $sql = "DELETE FROM patients WHERE patients_id = :id";
+
+        $query = $pdo->prepare($sql);
+
+        //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $query->execute();
+        
+        
     }
 }

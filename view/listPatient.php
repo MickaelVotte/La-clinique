@@ -21,6 +21,7 @@ include('../view/templates/header.php');
                     <th scope="col">Prénon</th>
                     <th scope="col">Information</th>
                     <th scope="col">Modifier</th>
+                    <th scope="col">Supprimer</th>
                 </tr>
             </thead>
             <tbody class="text-center">
@@ -32,12 +33,12 @@ include('../view/templates/header.php');
 
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#patient-<?= $patient['patients_id'] ?>">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#patientInfo-<?= $patient['patients_id'] ?>">
                                 Plus d'infos
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="patient-<?= $patient['patients_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="patientInfo-<?= $patient['patients_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -76,11 +77,38 @@ include('../view/templates/header.php');
                                 </div>
                             </div>
                         </td>
-                        <td>   
+                        <td>
+
+                            <a class="btn btn-info" href="./modifyPatient.php?id=<?= $patient['patients_id'] ?>">Modifier</a>
+
+                        </td>
+                        <td>
+
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <a href="./modifyPatient.php?id=<?=$patient['patients_id'] ?>">Modifier</a>
-                </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#patient-<?= $patient['patients_id'] ?>">
+                                Supprimer
+                            </button>
+
+                            <!-- Modal -->
+                            <?php foreach ($patientArray as $patient) { ?>
+                                <div class="modal fade" id="patient-<?= $patient['patients_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Supprimer le patient</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez vous supprimer le patient <?= $patient['patients_lastname'] ?> ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
+                                                <a href="listPatient.php?action=delete&idPatient=<?= $patient['patients_id'] ?>" class="btn btn-success" value="">Oui</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php } ?>
                         </td>
                     </tr>
                 <?php } ?>

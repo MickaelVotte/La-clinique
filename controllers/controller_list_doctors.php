@@ -11,6 +11,15 @@ require_once '../models/Database.php';
 require_once '../models/Doctors.php';
 
 
+
+
+if(isset($_GET['action']) && isset($_GET['idDoctor']) && $_GET['action'] == 'delete')
+{
+    $deleteDoctor = new Doctors();
+
+    $deleteDoctor->deleteDoctor($_GET['idDoctor']);
+}
+
 //j'instancie un nouvel objet $alldoctors selon la classe Doctors
 
 $allDoctors = new Doctors();
