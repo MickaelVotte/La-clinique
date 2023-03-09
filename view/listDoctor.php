@@ -27,12 +27,12 @@ include('../view/templates/header.php')
                     <th scope="col">Modifier</th>
                     <th scope="col">Supprimer</th>
 
-                 
+
                 </tr>
             </thead>
             <tbody class="text-center">
-                
-                <?php 
+
+                <?php
 
                 foreach ($doctorArray as $doctors) { ?>
                     <tr>
@@ -41,16 +41,16 @@ include('../view/templates/header.php')
                         <td class="text-uppercase"><?= $doctors['doctors_name'] ?></td>
                         <td><?= $doctors['doctors_lastname'] ?></td>
                         <td><?= $doctors['medicalspecialities_name'] ?></td>
-                        
+
 
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorInfo-<?=$doctors['doctors_id']?>">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#doctorInfo-<?= $doctors['doctors_id'] ?>">
                                 Plus d'infos
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="doctorInfo-<?=$doctors['doctors_id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="doctorInfo-<?= $doctors['doctors_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -61,13 +61,13 @@ include('../view/templates/header.php')
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">id</th>
+                                                        <th scope="col">Id</th>
                                                         <th scope="col">Nom</th>
                                                         <th scope="col">Prénon</th>
                                                         <th scope="col">N° de Télèphone</th>
-                                                        <th scope="col">mail</th>
+                                                        <th scope="col">Mail</th>
                                                         <th scope="col">Spécialité</th>
-                                                       
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -84,7 +84,7 @@ include('../view/templates/header.php')
                                             </table>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,7 +92,10 @@ include('../view/templates/header.php')
                         </td>
 
 
-
+                        <td>
+                            <div class="btn btn-info"><a href="./modifyDoctor.php?id=<?= $doctors['doctors_id'] ?>">Modifier</a>
+                            </div>
+                        </td>
 
 
 
@@ -115,14 +118,14 @@ include('../view/templates/header.php')
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Non</button>
-                                                <a href="listDoctor.php?action=delete&idDoctor=<?=$doctors['doctors_id'] ?>" class="btn btn-success" value="">Oui</a>
+                                                <a href="listDoctor.php?action=delete&idDoctor=<?= $doctors['doctors_id'] ?>" class="btn btn-success" value="">Oui</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             <?php } ?>
-                        </td></td>
-                        
+                        </td>
+
                     </tr>
                 <?php } ?>
 

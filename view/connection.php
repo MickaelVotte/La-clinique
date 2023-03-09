@@ -19,7 +19,7 @@
 
         <div class="form-control text-center border border-primary shadow p-3 mb-5 bg-body rounded ">
             <div class="mt-5 mb-2">
-                <label for="login">identifiant:</label>
+                <label for="login">Identifiant:</label>
                 <br>
                 <input type="text" id="login" name="login"  value="<?= isset($errors['login']) ? $_POST['login'] : '' ?>">
                 <br>
@@ -38,7 +38,7 @@
                 <button class="btn btn-primary">Se connecter</button>
             </div>
             </div>
-            <div>
+            <div class="text-center m-3">
                 <small> <a href="">mot de passe oubliée</a></small>
 
             </div>

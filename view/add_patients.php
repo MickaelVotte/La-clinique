@@ -22,7 +22,7 @@
                 <input id="lastname" name="lastname" type="text" required value="<?= $_POST['lastname'] ?? '' ?>">
             </div>
             <div>
-                <label for="firstname">Prénon: <span class="text-danger"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span></label>
+                <label for="firstname">Prénom: <span class="text-danger"><?= isset($errors['firstname']) ? $errors['firstname'] : '' ?></span></label>
                 <br>
                 <input id="firstname" name="firstname" type="text" required value="<?= $_POST['firstname'] ?? '' ?>">
             </div>
@@ -32,7 +32,7 @@
                 <input id="phonenumber" name="phonenumber" type="text" required value="<?= $_POST['phonenumber'] ?? '' ?>">
             </div>
             <div>
-                <label for="address">adresse: <span class="text-danger"><?= isset($errors['address']) ? $errors['address'] : '' ?></span></label>
+                <label for="address">Adresse: <span class="text-danger"><?= isset($errors['address']) ? $errors['address'] : '' ?></span></label>
                 <br>
                 <input id="address" name="address" type="text" required value="<?= $_POST['address'] ?? '' ?>">
             </div>

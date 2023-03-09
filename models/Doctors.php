@@ -49,7 +49,7 @@ class Doctors extends DataBase
     }
     public function setDoctorPhonenumber(string $phonenumber)
     {
-        $this->__doctor_phonenumber = $phonenumber;
+        $this->_doctor_phonenumber = $phonenumber;
     }
 
 

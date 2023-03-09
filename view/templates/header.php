@@ -15,7 +15,7 @@
 </head>
 
 <div class="text-center mt-3 mb-5">
-    <h1>CLINIQUE LH8</h1>
+    <h1>CLINIQUE</h1>
 </div>
 <hr>
 

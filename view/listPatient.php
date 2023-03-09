@@ -16,7 +16,7 @@ include('../view/templates/header.php');
         <table class="table table-striped text-center">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prénon</th>
                     <th scope="col">Information</th>
@@ -71,7 +71,7 @@ include('../view/templates/header.php');
                                             </table>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                                         </div>
                                     </div>
                                 </div>

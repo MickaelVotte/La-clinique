@@ -19,7 +19,7 @@ include('../view/templates/header.php')
         <input type="text" id="name" name="name" required value="<?=$_POST['name'] ?? $infoDoctor['doctors_name']  ?>">
     </div>
     <div>
-        <label for="lastname">Prénon: <span class="text-danger"><?= isset($errors['lastname']) ? $errors['lastname'] : '' ?></span> </label>
+        <label for="lastname">Prénom: <span class="text-danger"><?= isset($errors['lastname']) ? $errors['lastname'] : '' ?></span> </label>
         <br>
         <input type="text" id="lastname" name="lastname" required value="<?=$_POST['lastname'] ?? $infoDoctor['doctors_lastname'] ?>">
     </div>
@@ -43,6 +43,7 @@ include('../view/templates/header.php')
           <?php  } ?>
         </select>
     </div>
+
 
 
     <div class="m-5">

@@ -64,8 +64,8 @@ if (isset($_POST['date'])) {
         $rdvObj = new Rdv;
         $rdvObj->addRdv($date, $start, $description, $patient, $doctor);
 
-
-        
         header('Location: dashboard.php');
     }
 }
+
+

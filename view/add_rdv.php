@@ -16,20 +16,20 @@ include('../view/templates/header.php')
             <input type="date" name="date" id="date">
         </div>
         <div>
-            <label for="start">début du rendez-vous:<span class="text-danger"><?= isset($errors['start']) ? $errors['start'] : '' ?></span></label>
+            <label for="start">Début du rendez-vous:<span class="text-danger"><?= isset($errors['start']) ? $errors['start'] : '' ?></span></label>
             <br>
             <input type="time" name="start" id="start">
         </div>
         
     
         <div>
-            <label for="description">description<span class="text-danger"><?= isset($errors['description']) ? $errors['description'] : '' ?></span></span></label>
+            <label for="description">Description<span class="text-danger"><?= isset($errors['description']) ? $errors['description'] : '' ?></span></span></label>
             <br>
             <textarea name="description" type="description" id="description" value="" row="30" cols="60"></textarea>
         </div>
         
         <div>
-            <label for="patients">patient:<span class="text-danger"></span></label>
+            <label for="patients">Patient:<span class="text-danger"></span></label>
             <br>
             <select name="patients" id="patients">
                 <option value="" disabled selected>Veuillez selectionner un client</option>
@@ -40,7 +40,7 @@ include('../view/templates/header.php')
         </div>
 
         <div>
-            <label for="doctors">docteur:<span></span></label>
+            <label for="doctors">Docteur:<span></span></label>
             <br>
             <select name="doctors" id="doctors">
             <option value="" disabled selected>Veuillez selectionner un docteur</option>

@@ -19,7 +19,7 @@ class Rdv extends DataBase
     {
         $this->_rendez_vous_id = $id;
     }
-    
+
     public function getRendezVousDate()
     {
         return $this->_rendez_vous_date;
@@ -49,21 +49,21 @@ class Rdv extends DataBase
 
     public function getPatientIdPatient()
     {
-        return $this-> _patients_id_patients;
+        return $this->_patients_id_patients;
     }
-    public function setPatientIdPatient (int $idPatient)
+    public function setPatientIdPatient(int $idPatient)
     {
-        $this-> _patients_id_patients = $idPatient;
+        $this->_patients_id_patients = $idPatient;
     }
 
 
     public function getDoctorsIdDoctors()
     {
-        return $this-> _doctors_id_doctors;
+        return $this->_doctors_id_doctors;
     }
-    public function setDoctorsIdDoctors (int $idDoctor)
+    public function setDoctorsIdDoctors(int $idDoctor)
     {
-        $this-> _doctors_id_doctors = $idDoctor;
+        $this->_doctors_id_doctors = $idDoctor;
     }
 
 
@@ -80,22 +80,22 @@ class Rdv extends DataBase
      */
 
 
-    public function addRdv(string $date, string $hour, string $description, int $idPatient, int $idDoctor) : void
+    public function addRdv(string $date, string $hour, string $description, int $idPatient, int $idDoctor): void
     {
 
         $pdo = parent::connectDb();
 
-        $sql = "INSERT INTO rendezvous (`rendezvous_date`, `rendezvous_hour`, `rendezvous_description`, `patients_id_patients`, `doctors_id_doctors`) VALUES (:date, :hour, :description, :idPatient, :idDoctor)"; 
+        $sql = "INSERT INTO rendezvous (`rendezvous_date`, `rendezvous_hour`, `rendezvous_description`, `patients_id_patients`, `doctors_id_doctors`) VALUES (:date, :hour, :description, :idPatient, :idDoctor)";
 
         $query = $pdo->prepare($sql);
 
 
 
         $query->bindValue(':date', $date, PDO::PARAM_STR);
-        $query->bindValue(':hour' ,$hour, PDO::PARAM_STR);
-        $query->bindValue(':description' ,$description, PDO::PARAM_STR);
-        $query->bindValue(':idPatient' ,$idPatient, PDO::PARAM_INT);
-        $query->bindValue(':idDoctor' ,$idDoctor, PDO::PARAM_INT);
+        $query->bindValue(':hour', $hour, PDO::PARAM_STR);
+        $query->bindValue(':description', $description, PDO::PARAM_STR);
+        $query->bindValue(':idPatient', $idPatient, PDO::PARAM_INT);
+        $query->bindValue(':idDoctor', $idDoctor, PDO::PARAM_INT);
 
         $query->execute();
     }
@@ -109,14 +109,14 @@ class Rdv extends DataBase
      * @return array tableau associatif
      */
 
-    public function getAllRdv():array
+    public function getAllRdv(): array
     {
         $pdo = parent::connectDb();
 
         $sql = "SELECT rendezvous_id, rendezvous_date, rendezvous_hour, rendezvous_description, patients_firstname, doctors_name, medicalspecialities_name FROM rendezvous
          INNER JOIN patients on patients_id = patients_id_patients 
         INNER JOIN doctors on doctors_id = doctors_id_doctors
-        INNER JOIN medicalspecialities on medicalspecialities_id = medicalspecialities_id_medicalspecialities"; 
+        INNER JOIN medicalspecialities on medicalspecialities_id = medicalspecialities_id_medicalspecialities";
 
 
         $query = $pdo->query($sql);
@@ -134,7 +134,7 @@ class Rdv extends DataBase
      */
 
 
-     public function getOneRdv($id): array
+    public function getOneRdv($id): array
     {
         //création d'une instance pdo via la function du parent
         $pdo = parent::connectDb();
@@ -148,22 +148,21 @@ class Rdv extends DataBase
         //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
         $query->bindValue(':id', $id, PDO::PARAM_INT);
 
-         //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
+        //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
         $query->execute();
         $result = $query->fetch();
         return $result;
-        
     }
 
 
-    
+
     public function updateRdv($date, $hour, $description, $idPatient, $idDoctor, $idRdv)
     {
         //création d'une instance pdo via la function du parent
         $pdo = parent::connectDb();
 
         //j'écris la requete qui va me permettre de modifier toutes les infos du rdv
-        $sql ="UPDATE rendezvous SET rendezvous_date = :date, rendezvous_hour = :hour, rendezvous_description = :description, patients_id_patients = :idPatients, doctors_id_doctors = :idDoctors 
+        $sql = "UPDATE rendezvous SET rendezvous_date = :date, rendezvous_hour = :hour, rendezvous_description = :description, patients_id_patients = :idPatients, doctors_id_doctors = :idDoctors 
         WHERE rendezvous_id =:idRdv";
 
 
@@ -179,18 +178,53 @@ class Rdv extends DataBase
         $query->bindValue(':idPatients', $idPatient, PDO::PARAM_INT);
         $query->bindValue(':idDoctors', $idDoctor, PDO::PARAM_INT);
         $query->bindValue(':idRdv', $idRdv, PDO::PARAM_INT);
-       
+
 
 
         //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
         $query->execute();
-
     }
 
 
 
+    public function deleteRdv($id)
+    {
+        // //création d'une instance pdo via la function du parent
+        $pdo = parent::connectDb();
 
+        //j'écris une requete pour supprimer un client.
+        $sql = "DELETE FROM rendezvous WHERE rendezvous_id = :id";
+
+        $query = $pdo->prepare($sql);
+
+        //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+
+        $query->execute();
+    }
+
+
+
+    public function getDoctorRdv($mail)
+    {
+        // //création d'une instance pdo via la function du parent
+        $pdo = parent::connectDb();
+
+        $sql = "SELECT * FROM rendezvous 
+           INNER JOIN patients on patients_id = patients_id_patients 
+        INNER JOIN doctors on doctors_id = doctors_id_doctors
+        INNER JOIN medicalspecialities on medicalspecialities_id = medicalspecialities_id_medicalspecialities
+         where doctors_mail = :mail";
+
+        //je prepare la requete a l'aide de la methode prepare() pque je stock dans une variable
+        $query = $pdo->prepare($sql);
+
+        //je lis la valeur du parametre (ex: id) un marqueur nominatif :id à l'aide de la methode-> bindvalue()
+        $query->bindValue(':mail', $mail, PDO::PARAM_STR);
+
+        //une fois les informations récupéré, j'execute la rêquete à l'aide de la methode-> execute
+        $query->execute();
+        $result = $query->fetchAll();
+        return $result;
+    }
 }
-
-
-?>
